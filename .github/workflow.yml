@@ -1,0 +1,27 @@
+name: Read and Output hello.txt
+
+# Trigger the workflow on push to the main branch
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  read-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Read and output the content of hello.txt
+      - name: Read hello.txt file
+        run: |
+          cat hello.txt
+
+      # Output the content to the workflow log
+      - name: Output hello.txt content to log
+        run: |
+          content=$(cat hello.txt)
+          echo "Content of hello.txt: $content"
